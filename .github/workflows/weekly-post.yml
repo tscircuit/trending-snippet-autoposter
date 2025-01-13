@@ -5,6 +5,9 @@ on:
     - cron: "0 0 * * 0" # Run at midnight every Sunday
   workflow_dispatch: # Allow manual trigger
 
+permissions:
+  contents: write # Needed for pushing changes
+
 jobs:
   post-trending:
     runs-on: ubuntu-latest
@@ -23,3 +26,11 @@ jobs:
         run: bun run src/index.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add previous-trending-snippets.json
+          git commit -m "Update previous-trending-snippets.json [skip ci]" || echo "No changes to commit"
+          git push
