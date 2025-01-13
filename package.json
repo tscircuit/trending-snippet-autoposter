@@ -1,0 +1,19 @@
+{
+  "name": "trending-snippet-autoposter",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "bun test",
+    "start": "bun run src/index.ts"
+  },
+  "dependencies": {
+    "@edge-runtime/primitives": "^4.1.0",
+    "@tscircuit/plop": "^0.0.46",
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3"
+  }
+}
