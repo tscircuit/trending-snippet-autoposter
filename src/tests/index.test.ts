@@ -110,7 +110,7 @@ test("autoposter skips snippets with less than 2 stars", async () => {
   } finally {
     delete process.env.FAKE_REDDIT_URL;
     await server.stop();
-    await fs.unlink("previous-trending-snippets.json").catch(() => {});
+    await cleanup();
   }
 });
 
