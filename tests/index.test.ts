@@ -4,7 +4,7 @@ import fs from "fs/promises";
 import path from "path";
 import axios from "axios";
 import type { AxiosResponse, AxiosRequestConfig } from "axios";
-import main from "../index";
+import main from "../src/index";
 
 // Mock the trending API response
 const mockTrendingResponse = {

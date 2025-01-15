@@ -18,6 +18,6 @@
     },
     "rootDir": "."
   },
-  "include": ["src/**/*", "fake-reddit/**/*"],
+  "include": ["src/**/*", "fake-reddit/**/*", "tests"],
   "exclude": ["node_modules"]
 }

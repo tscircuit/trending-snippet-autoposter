@@ -14,8 +14,11 @@
     "redaxios": "^0.5.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@tscircuit/fake-snippets": "^0.0.1",
     "@types/bun": "latest",
     "@types/node": "^22.10.5",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "winterspec": "^0.0.99"
   }
 }
