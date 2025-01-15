@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "@edge-runtime/primitives": "^4.1.0",
+    "@tscircuit/fake-reddit": "^0.0.1",
     "@tscircuit/plop": "^0.0.46",
-    "axios": "^1.7.9"
+    "axios": "^1.7.9",
+    "redaxios": "^0.5.1"
   },
   "devDependencies": {
     "@types/bun": "latest",

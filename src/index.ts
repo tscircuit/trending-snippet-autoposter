@@ -19,7 +19,7 @@ interface PreviousSnippets {
   posted_snippets: string[]; // Array of snippet_ids
 }
 
-const TRENDING_API = "https://registry-api.tscircuit.com/snippets/list_trending";
+const TRENDING_API = process.env.TRENDING_API_URL || "https://registry-api.tscircuit.com/snippets/list_trending";
 const PREVIOUS_SNIPPETS_FILE = "previous-trending-snippets.json";
 const MIN_STARS_REQUIRED = 2;
 
@@ -42,23 +42,28 @@ async function savePreviousSnippets(snippets: PreviousSnippets): Promise<void> {
 
 async function postToSocialMedia(snippet: Snippet): Promise<void> {
   const postData = {
+    sr: "tscircuit",     // subreddit name (required)
+    kind: "self",        // post type (required)
     title: `${snippet.name}: ${snippet.description}`,
-    body: `Check out this trending tscircuit snippet!
-
-Type: ${snippet.snippet_type}
-Stars: ${snippet.star_count}
-Created by: ${snippet.owner_name}
-
-Code:
-\`\`\`typescript
-${snippet.code}
-\`\`\``,
+    // Provide simple text and let server handle formatting
+    text: snippet.description,
+    code: snippet.code,
+    description: snippet.description,
+    snippet_type: snippet.snippet_type,
+    star_count: snippet.star_count,
+    owner_name: snippet.owner_name,
+    created_at: snippet.created_at,
+    updated_at: snippet.updated_at,
     url: `https://registry.tscircuit.com/snippets/${snippet.snippet_id}`
   };
 
   // Post to Reddit (using fake-reddit in tests)
   const baseUrl = process.env.FAKE_REDDIT_URL || "http://localhost:3000";
-  await axios.post(`${baseUrl}/posts/submit`, postData);
+  await axios.post(`${baseUrl}/api/submit`, postData, {
+    headers: {
+      Authorization: "Bearer test-token"
+    }
+  });
 }
 
 async function main() {
