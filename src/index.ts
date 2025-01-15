@@ -82,7 +82,7 @@ async function main() {
       .sort((a, b) => b.star_count - a.star_count);
 
     if (eligibleSnippets.length === 0) {
-      console.log("No new eligible snippets to post");
+      // console.log("No new eligible snippets to post");
       return;
     }
 
@@ -95,7 +95,7 @@ async function main() {
     previousSnippets.posted_snippets.push(snippetToPost.snippet_id);
     await savePreviousSnippets(previousSnippets);
 
-    console.log(`Successfully posted snippet: ${snippetToPost.name}`);
+    // console.log(`Successfully posted snippet: ${snippetToPost.name}`);
   } catch (error) {
     console.error("Error:", error);
     process.exit(1);
