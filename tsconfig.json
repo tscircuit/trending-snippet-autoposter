@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@fake-reddit/*": ["fake-reddit/*"],
+      "lib/*": ["fake-reddit/lib/*"],
+      "winterspec/*": ["node_modules/winterspec/*"]
+    },
+    "rootDir": "."
+  },
+  "include": ["src/**/*", "fake-reddit/**/*", "tests"],
+  "exclude": ["node_modules"]
+}

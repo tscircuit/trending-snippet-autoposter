@@ -1,0 +1,36 @@
+name: Weekly Trending Snippet Post
+
+on:
+  schedule:
+    - cron: "0 0 * * 0" # Run at midnight every Sunday
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write # Needed for pushing changes
+
+jobs:
+  post-trending:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+          
+      - name: Install Dependencies
+        run: bun install
+        
+      - name: Run Autoposter Script
+        run: bun run src/index.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add previous-trending-snippets.json
+          git commit -m "Update previous-trending-snippets.json [skip ci]" || echo "No changes to commit"
+          git push

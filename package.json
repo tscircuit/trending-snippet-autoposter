@@ -1,0 +1,24 @@
+{
+  "name": "trending-snippet-autoposter",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "bun test",
+    "start": "bun run src/index.ts"
+  },
+  "dependencies": {
+    "@edge-runtime/primitives": "^4.1.0",
+    "@tscircuit/fake-reddit": "^0.0.1",
+    "@tscircuit/plop": "^0.0.46",
+    "axios": "^1.7.9",
+    "redaxios": "^0.5.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@tscircuit/fake-snippets": "^0.0.1",
+    "@types/bun": "latest",
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3",
+    "winterspec": "^0.0.99"
+  }
+}
