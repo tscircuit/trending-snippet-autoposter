@@ -1,0 +1,18 @@
+name: Weekly Post
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Runs every Sunday at midnight
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run script
+        run: bun run src/index.ts

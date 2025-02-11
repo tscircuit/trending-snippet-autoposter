@@ -1,0 +1,15 @@
+{
+  "name": "trending-snippet-autoposter",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "format": "biome format . --write"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "biome": "^0.3.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
