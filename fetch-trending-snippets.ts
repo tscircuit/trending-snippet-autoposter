@@ -1,7 +1,16 @@
 import { fetch } from 'bun';
 
 interface Snippet {
-    snippet_id: 'todo';
+  snippet_id: string;
+  unscoped_name: string;
+  name: string;
+  owner_name: string;
+  code: string;
+  created_at: string;
+  updated_at: string;
+  snippet_type: string;
+  description: string;
+  star_count: number;
 }
 
 export async function fetchTrendingSnippets(): Promise<Snippet[]> {
