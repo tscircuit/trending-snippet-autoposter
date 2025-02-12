@@ -1,7 +1,7 @@
 import { writeFileSync, readFileSync } from 'fs';
 import path from 'path';
 
-const TRACKED_FILE = path.join(__dirname, './previous-trending-snippets.json');
+const TRACKED_FILE = path.join(process.cwd(), 'previous-trending-snippets.json');
 
 export function loadPostedSnippets(): string[] {
   try {
