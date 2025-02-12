@@ -7,8 +7,8 @@ export async function fetchTrendingSnippets(): Promise<Snippet[]> {
     if (!response.ok) {
       throw new Error(`Failed to fetch trending snippets: ${response.statusText}`);
     }
-    const data = await response.json();
-    const snippets = data.snippets.filter((snippet: any) => snippet.star_count >= 2) satisfies Snippet[];
+    const content = await response.json();
+    const snippets = content.snippets.filter((snippet: any) => snippet.star_count >= 2) satisfies Snippet[];
     console.log(`[FETCH-TRENDING-SNIPPETS] Successfully fetched ${snippets.length} trending snippets.`);
     return snippets;
   } catch (error) {
