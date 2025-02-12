@@ -12,7 +12,7 @@ interface Snippet {
 }
 
 interface PlatformPoster {
-    post(snippet: Snippet): Promise<unknown>;
+    post(snippet: Snippet): Promise<boolean | undefined>;
 }
 
 declare module "bun" {

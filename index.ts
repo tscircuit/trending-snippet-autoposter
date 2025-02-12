@@ -26,12 +26,13 @@ export default async function main() {
 
     const postManager = new PostManager([twitterPoster, redditPoster, discordPoster]);
 
-    await postManager.postSnippet(snippetToPost);
+    const result = await postManager.postSnippet(snippetToPost);
 
-    savePostedSnippet(snippetToPost.snippet_id);
+    if(result.successes) {
+        savePostedSnippet(snippetToPost.snippet_id);
+    }
 
-    console.log('[INDEX] Main function completed successfully.');
-
+    console.log('[INDEX] Main function completed successfully.')
 }
 
 if (import.meta.main) {

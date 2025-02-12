@@ -13,7 +13,7 @@ export class TwitterPoster implements PlatformPoster {
     this.client = new TwitterApi(twitterToken);
   }
 
-  async post(snippet: Snippet): Promise<void> {
+  async post(snippet: Snippet) {
     if (!this.client) {
       console.error('[TWITTER-POSTER] Twitter client not initialized. Skipping post.');
       return;
@@ -23,6 +23,7 @@ export class TwitterPoster implements PlatformPoster {
       const message = SnippetFormatter.formatForTwitter(snippet);
       await this.client.v2.tweet(message);
       console.log(`[TWITTER-POSTER] Successfully posted snippet to Twitter: ${snippet.name}`);
+      return true
     } catch (error) {
       console.error(`[TWITTER-POSTER] Failed to post snippet to Twitter:`, error);
     }

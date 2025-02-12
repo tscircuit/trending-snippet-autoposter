@@ -13,7 +13,7 @@ export class DiscordPoster implements PlatformPoster {
     this.webhook = new WebhookClient({ url: Bun.env.DISCORD_WEBHOOK_URL });
   }
 
-  async post(snippet: Snippet): Promise<void> {
+  async post(snippet: Snippet){
     if (!this.webhook) {
       console.error('[DISCORD-POSTER] Discord webhook not initialized. Skipping post.');
       return;
@@ -38,6 +38,7 @@ export class DiscordPoster implements PlatformPoster {
       });
 
       console.log(`[DISCORD-POSTER] Successfully posted snippet to Discord: ${title}`);
+      return true
     } catch (error) {
       console.error(`[DISCORD-POSTER] Failed to post snippet to Discord:`, error);
     }
