@@ -1,15 +1,30 @@
-import { SnippetFormatter } from '@/utils/snippet-formatter';
 import { TwitterApi } from 'twitter-api-v2';
+import { SnippetFormatter } from '@/utils/snippet-formatter';
 
 export class TwitterPoster implements PlatformPoster {
-  private client: TwitterApi;
+  private client: TwitterApi | null = null;
 
-  constructor(apiKey: string = Bun.env.TWITTER_TOKEN) {
-    this.client = new TwitterApi(apiKey);
+  constructor() {
+    const twitterToken = Bun.env.TWITTER_TOKEN;
+    if (!twitterToken) {
+      console.error('[TWITTER-POSTER] Missing Twitter token. Skipping Twitter posting.');
+      return;
+    }
+    this.client = new TwitterApi(twitterToken);
   }
 
   async post(snippet: Snippet): Promise<void> {
-    const message = SnippetFormatter.formatForTwitter(snippet);
-    await this.client.v2.tweet(message);
+    if (!this.client) {
+      console.error('[TWITTER-POSTER] Twitter client not initialized. Skipping post.');
+      return;
+    }
+
+    try {
+      const message = SnippetFormatter.formatForTwitter(snippet);
+      await this.client.v2.tweet(message);
+      console.log(`[TWITTER-POSTER] Successfully posted snippet to Twitter: ${snippet.name}`);
+    } catch (error) {
+      console.error(`[TWITTER-POSTER] Failed to post snippet to Twitter:`, error);
+    }
   }
 }

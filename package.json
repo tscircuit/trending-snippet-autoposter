@@ -3,11 +3,14 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "format": "biome format . --write"
+    "format": "biome format . --write",
+    "start": "bun index.ts",
+    "dev": "bun --watch --inspect index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "biome": "^0.3.3"
+    "biome": "^0.3.3",
+    "consola": "^3.4.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
