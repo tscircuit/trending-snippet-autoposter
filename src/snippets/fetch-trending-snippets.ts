@@ -1,5 +1,4 @@
 import { fetch } from 'bun';
-import consola from 'consola';
 
 export async function fetchTrendingSnippets(): Promise<Snippet[]> {
   try {
@@ -10,17 +9,10 @@ export async function fetchTrendingSnippets(): Promise<Snippet[]> {
     }
     const data = await response.json();
     const snippets = data.snippets.filter((snippet: any) => snippet.star_count >= 2) satisfies Snippet[];
-    console.log(`[] `);
-    consola.success({
-      message: `Successfully fetched ${snippets.length} trending snippets.`,
-      badge: 'FETCH-TRENDING-SNIPPETS'
-    })
+    console.log(`[FETCH-TRENDING-SNIPPETS] Successfully fetched ${snippets.length} trending snippets.`);
     return snippets;
   } catch (error) {
-    consola.error({
-      message: `Error fetching trending snippets: ${error}`,
-      badge: 'FETCH-TRENDING-SNIPPETS'
-    })
+    console.error('[FETCH-TRENDING-SNIPPETS] Error fetching trending snippets:', error);
     return [];
   }
 }
