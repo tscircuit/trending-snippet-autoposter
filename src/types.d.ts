@@ -20,5 +20,11 @@ declare module "bun" {
         TWITTER_TOKEN: string;
         REDDIT_TOKEN: string;
         DISCORD_WEBHOOK_URL: string;
+        REDDIT_USER_AGENT: string,
+        REDDIT_CLIENT_ID: string,
+        REDDIT_CLIENT_SECRET: string,
+        REDDIT_USERNAME: string,
+        REDDIT_PASSWORD: string,
+        REDDIT_SUBREDDIT: string,
     }
 }
