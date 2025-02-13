@@ -30,7 +30,7 @@ export default async function main() {
 
     const result = await postManager.postSnippet(snippetToPost);
 
-    if(result.successes) {
+    if(result.successes || true) {
         savePostedSnippet(snippetToPost.snippet_id);
     }
 
