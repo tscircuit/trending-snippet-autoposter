@@ -21,7 +21,7 @@ jobs:
         run: bun install
 
       - name: Run script
-        run: bun run index.ts
+        run: bun index.ts
 
       - name: Commit and push files
         uses: EndBug/add-and-commit@v9
