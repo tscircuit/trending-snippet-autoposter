@@ -4,34 +4,27 @@ import path from 'path';
 
 const TRACKED_FILE = path.join(process.cwd(), 'previous-trending-snippets.json');
 
-function loadPostedSnippets(): string[] {
-  debug('[TRACK-POSTED-SNIPPETS] Loading posted snippets...');
+export function loadPostedSnippets(): string[] {
   try {
+    debug('[TRACK-POSTED-SNIPPETS] Loading posted snippets...');
     const content = readFileSync(TRACKED_FILE, 'utf8');
     const postedSnippets = JSON.parse(content);
-    debug(`[TRACK-POSTED-SNIPPETS] Successfully loaded ${postedSnippets.length} posted snippets.`);
+   debug(`[TRACK-POSTED-SNIPPETS] Successfully loaded ${postedSnippets.length} posted snippets.`);
     return postedSnippets;
   } catch (error) {
-    console.error('[TRACK-POSTED-SNIPPETS] Error loading previous snippets:', error);
+    console.error('[TRACK-POSTED-SNIPPETS] Error loading previous snippets:');
     return [];
   }
 }
 
-function savePostedSnippet(snippetId: string): void {
-  debug(`[TRACK-POSTED-SNIPPETS] Saving snippet ID: ${snippetId}`);
-  const postedSnippets = loadPostedSnippets();
-  if (!Array.isArray(postedSnippets)) {
-    console.error('[TRACK-POSTED-SNIPPETS] Invalid data format in posted snippets file.');
-    return;
-  }
-
-  const updatedSnippets = [...new Set([...postedSnippets, snippetId])];
+export function savePostedSnippet(snippetId: string): void {
   try {
-    writeFileSync(TRACKED_FILE, JSON.stringify(updatedSnippets, null, 2));
-    debug(`[TRACK-POSTED-SNIPPETS] Successfully saved snippet ID: ${snippetId}`);
+   debug(`[TRACK-POSTED-SNIPPETS] Saving snippet ID: ${snippetId}`);
+    const postedSnippets = loadPostedSnippets();
+    postedSnippets.push(snippetId);
+    writeFileSync(TRACKED_FILE, JSON.stringify([...new Set(postedSnippets)], null, 2));
+   debug(`[TRACK-POSTED-SNIPPETS] Successfully saved snippet ID: ${snippetId}`);
   } catch (error) {
     console.error(`[TRACK-POSTED-SNIPPETS] Error saving posted snippet:`, error);
   }
 }
-
-export { loadPostedSnippets, savePostedSnippet };
