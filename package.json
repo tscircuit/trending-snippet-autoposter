@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "format": "biome format . --write",
+    "format:check": "biome format . --check",
     "start": "bun index.ts",
     "dev": "bun --watch --inspect index.ts"
   },
