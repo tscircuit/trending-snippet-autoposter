@@ -4,10 +4,11 @@ import { DiscordPoster } from '@/platforms/discord';
 import { PostManager } from '@/platforms/manager';
 import { fetchTrendingSnippets } from '@/snippets/fetch-trending-snippets';
 import { loadPostedSnippets, savePostedSnippet } from '@/snippets/track-posted-snippets';
+import debug from 'debug';
 
 export default async function main() {
   console.clear()
-    console.warn('[INDEX] Starting main function.\n');
+    debug('[INDEX] Starting main function.\n');
 
     const snippets = await fetchTrendingSnippets();
     const postedSnippets = loadPostedSnippets();
@@ -17,7 +18,7 @@ export default async function main() {
     );
 
     if (!snippetToPost) {
-      console.log('[INDEX] No new snippets to post.');
+      console.info('[INDEX] No new snippets to post.');
       return;
     }
 

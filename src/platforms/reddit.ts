@@ -1,5 +1,6 @@
 import snoowrap from 'snoowrap';
 import { SnippetFormatter } from '@/utils/snippet-formatter';
+import debug from 'debug';
 
 export class RedditPoster implements PlatformPoster {
   private client: snoowrap | null = null;
@@ -12,7 +13,7 @@ export class RedditPoster implements PlatformPoster {
     const REDDIT_PASSWORD = Bun.env.REDDIT_PASSWORD;
 
     if (!REDDIT_USER_AGENT || !REDDIT_CLIENT_ID || !REDDIT_CLIENT_SECRET || !REDDIT_USERNAME || !REDDIT_PASSWORD) {
-      console.error('[REDDIT-POSTER] Missing Reddit API credentials. Skipping Reddit posting.');
+      debug('[REDDIT-POSTER] Missing Reddit API credentials. Skipping Reddit posting.');
       return;
     }
 
@@ -41,7 +42,7 @@ export class RedditPoster implements PlatformPoster {
         subredditName: Bun.env.REDDIT_SUBREDDIT
       });
 
-      console.log(`[REDDIT-POSTER] Successfully posted snippet to Reddit: ${title}`);
+      debug(`[REDDIT-POSTER] Successfully posted snippet to Reddit: ${title}`);
       return true
     } catch (error) {
       console.error(`[REDDIT-POSTER] Failed to post snippet to Reddit:`, error);
