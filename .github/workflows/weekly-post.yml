@@ -26,6 +26,5 @@ jobs:
       - name: Commit and push files
         uses: EndBug/add-and-commit@v9
         with:
-          committer_name: "weekly-updates"
-          message: "Weekly snippet updates"
+          message: "Weekly snippet updates!"
           add: "previous-trending-snippets.json"
