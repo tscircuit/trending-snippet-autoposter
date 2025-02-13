@@ -2,17 +2,30 @@ name: Weekly Post
 
 on:
   schedule:
-    - cron: '0 0 * * 0' # Runs every Sunday at midnight
+    - cron: "0 18 * * *" # 6am PST
+  workflow_dispatch: # Allow manual triggering
 
 jobs:
   post:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+          
       - name: Install dependencies
         run: bun install
 
       - name: Run script
-        run: bun run src/index.ts
+        run: bun run index.ts
+
+      - name: Commit and push files
+        uses: EndBug/add-and-commit@v9
+        with:
+          committer_name: "weekly-updates"
+          message: "Weekly snippet updates"
+          add: "previous-trending-snippets.json"
