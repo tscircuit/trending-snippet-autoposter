@@ -7,16 +7,16 @@ export class DiscordPoster implements PlatformPoster {
   private webhook: WebhookClient | null = null;
 
   constructor() {
-    if (!Bun.env.DISCORD_WEBHOOK_URL) {
-      debug('[DISCORD-POSTER] Missing Discord webhook URL. Skipping Discord posting.');
+    if (!process.env.DISCORD_WEBHOOK_URL) {
+      console.error('[DISCORD-POSTER] Missing Discord webhook URL. Skipping Discord posting.');
       return;
     }
-    this.webhook = new WebhookClient({ url: Bun.env.DISCORD_WEBHOOK_URL });
+    this.webhook = new WebhookClient({ url: process.env.DISCORD_WEBHOOK_URL });
   }
 
   async post(snippet: Snippet){
     if (!this.webhook) {
-      console.error('[DISCORD-POSTER] Discord webhook not initialized. Skipping post.');
+      debug('[DISCORD-POSTER] Discord webhook not initialized. Skipping post.');
       return;
     }
 

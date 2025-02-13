@@ -6,14 +6,14 @@ export class RedditPoster implements PlatformPoster {
   private client: snoowrap | null = null;
 
   constructor() {
-    const REDDIT_USER_AGENT = Bun.env.REDDIT_USER_AGENT;
-    const REDDIT_CLIENT_ID = Bun.env.REDDIT_CLIENT_ID;
-    const REDDIT_CLIENT_SECRET = Bun.env.REDDIT_CLIENT_SECRET;
-    const REDDIT_USERNAME = Bun.env.REDDIT_USERNAME;
-    const REDDIT_PASSWORD = Bun.env.REDDIT_PASSWORD;
+    const REDDIT_USER_AGENT = process.env.REDDIT_USER_AGENT;
+    const REDDIT_CLIENT_ID = process.env.REDDIT_CLIENT_ID;
+    const REDDIT_CLIENT_SECRET = process.env.REDDIT_CLIENT_SECRET;
+    const REDDIT_USERNAME = process.env.REDDIT_USERNAME;
+    const REDDIT_PASSWORD = process.env.REDDIT_PASSWORD;
 
     if (!REDDIT_USER_AGENT || !REDDIT_CLIENT_ID || !REDDIT_CLIENT_SECRET || !REDDIT_USERNAME || !REDDIT_PASSWORD) {
-      debug('[REDDIT-POSTER] Missing Reddit API credentials. Skipping Reddit posting.');
+      console.error('[REDDIT-POSTER] Missing Reddit API credentials. Skipping Reddit posting.');
       return;
     }
 
@@ -28,7 +28,7 @@ export class RedditPoster implements PlatformPoster {
 
   async post(snippet: Snippet) {
     if (!this.client) {
-      console.error('[REDDIT-POSTER] Reddit client not initialized. Skipping post.');
+      debug('[REDDIT-POSTER] Reddit client not initialized. Skipping post.');
       return;
     }
 
@@ -39,7 +39,7 @@ export class RedditPoster implements PlatformPoster {
       this.client.submitSelfpost({
         title: title,
         text: content,
-        subredditName: Bun.env.REDDIT_SUBREDDIT
+        subredditName: process.env.REDDIT_SUBREDDIT
       });
 
       debug(`[REDDIT-POSTER] Successfully posted snippet to Reddit: ${title}`);

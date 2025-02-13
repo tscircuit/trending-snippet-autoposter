@@ -6,9 +6,9 @@ export class TwitterPoster implements PlatformPoster {
   private client: TwitterApi | null = null;
 
   constructor() {
-    const twitterToken = Bun.env.TWITTER_TOKEN;
+    const twitterToken = process.env.TWITTER_TOKEN;
     if (!twitterToken) {
-      debug('[TWITTER-POSTER] Missing Twitter token. Skipping Twitter posting.');
+      console.error('[TWITTER-POSTER] Missing Twitter token. Skipping Twitter posting.');
       return;
     }
     this.client = new TwitterApi(twitterToken);
@@ -16,7 +16,7 @@ export class TwitterPoster implements PlatformPoster {
 
   async post(snippet: Snippet) {
     if (!this.client) {
-      console.error('[TWITTER-POSTER] Twitter client not initialized. Skipping post.');
+      debug('[TWITTER-POSTER] Twitter client not initialized. Skipping post.');
       return;
     }
 
