@@ -1,3 +1,5 @@
+import debug from "debug";
+
 export class PostManager {
   private posters: PlatformPoster[];
 
@@ -14,7 +16,7 @@ export class PostManager {
     for (const poster of this.posters) {
       try {
         const isPostedSucessfully = await poster.post(snippet);
-        console.log(`[POST-MANAGER] ${isPostedSucessfully ?'Successfully posted' : 'Tried posting'} snippet to ${poster.constructor.name}`);
+        debug(`[POST-MANAGER] ${isPostedSucessfully ?'Successfully posted' : 'Tried posting'} snippet to ${poster.constructor.name}`);
         if(isPostedSucessfully) successes++;
         else skipped++
       } catch (error: any) {
