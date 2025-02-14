@@ -1,4 +1,3 @@
-import { TwitterPoster } from "@/platforms/twitter";
 import { RedditPoster } from "@/platforms/reddit";
 import { DiscordPoster } from "@/platforms/discord";
 import { PostManager } from "@/platforms/manager";
@@ -25,7 +24,6 @@ export default async function main() {
     return;
   }
 
-  const twitterPoster = new TwitterPoster();
   const redditPoster = new RedditPoster();
   const discordPoster = new DiscordPoster();
 
