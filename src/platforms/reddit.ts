@@ -5,11 +5,11 @@ export class RedditPoster implements PlatformPoster {
   private client: snoowrap | null = null;
 
   constructor() {
-    const REDDIT_USER_AGENT = Bun.env.REDDIT_USER_AGENT || "MyRedditApp/1.0";
-    const REDDIT_CLIENT_ID = Bun.env.REDDIT_CLIENT_ID;
-    const REDDIT_CLIENT_SECRET = Bun.env.REDDIT_CLIENT_SECRET;
-    const REDDIT_USERNAME = Bun.env.REDDIT_USERNAME;
-    const REDDIT_PASSWORD = Bun.env.REDDIT_PASSWORD;
+    const REDDIT_USER_AGENT = process.env.REDDIT_USER_AGENT || "MyRedditApp/1.0";
+    const REDDIT_CLIENT_ID = process.env.REDDIT_CLIENT_ID;
+    const REDDIT_CLIENT_SECRET = process.env.REDDIT_CLIENT_SECRET;
+    const REDDIT_USERNAME = process.env.REDDIT_USERNAME;
+    const REDDIT_PASSWORD = process.env.REDDIT_PASSWORD;
 
     if (
       !REDDIT_CLIENT_ID ||
