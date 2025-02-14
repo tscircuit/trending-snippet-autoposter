@@ -20,13 +20,6 @@ export class RedditPoster implements PlatformPoster {
       console.error(
         "[REDDIT-POSTER] Missing Reddit API credentials. Skipping Reddit posting.",
       );
-      console.log({
-        userAgent: REDDIT_USER_AGENT,
-        clientId: REDDIT_CLIENT_ID,
-        clientSecret: REDDIT_CLIENT_SECRET,
-        username: REDDIT_USERNAME,
-        password: REDDIT_PASSWORD,
-      });
       return;
     }
 
