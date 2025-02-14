@@ -2,7 +2,7 @@ name: Weekly Post
 
 on:
   schedule:
-    - cron: "0 18 * * *" # 6am PST
+    - cron: "0 18 * * 1" # 6am PST Weekly
   workflow_dispatch: # Allow manual triggering
 
 jobs:
