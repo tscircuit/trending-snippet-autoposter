@@ -36,7 +36,7 @@ export class RedditPoster implements PlatformPoster {
 
   async post(snippet: Snippet) {
     if (!this.client) {
-      console.error(
+      debug(
         "[REDDIT-POSTER] Reddit client not initialized. Skipping post.",
       );
       return;
