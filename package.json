@@ -1,0 +1,24 @@
+{
+  "name": "trending-snippet-autoposter",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "format": "biome format . --write",
+    "format:check": "biome format .",
+    "start": "bun index.ts",
+    "dev": "bun --watch --inspect index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "biome": "^0.3.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/debug": "^4.1.12",
+    "debug": "^4.4.0",
+    "discord.js": "^14.18.0",
+    "snoowrap": "^1.23.0"
+  }
+}
