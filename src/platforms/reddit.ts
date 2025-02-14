@@ -54,7 +54,7 @@ export class RedditPoster implements PlatformPoster {
 
 ---
 
-Created By [${snippet.owner_name}](https://github.com/@${snippet.owner_name})  
+Created By [${snippet.owner_name}](https://github.com/${snippet.owner_name})  
 
 `.trim();
 
