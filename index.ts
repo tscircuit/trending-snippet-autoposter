@@ -28,7 +28,6 @@ export default async function main() {
   const discordPoster = new DiscordPoster();
 
   const postManager = new PostManager([
-    twitterPoster,
     redditPoster,
     discordPoster,
   ]);
