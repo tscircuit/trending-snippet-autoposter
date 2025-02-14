@@ -27,10 +27,7 @@ export default async function main() {
   const redditPoster = new RedditPoster();
   const discordPoster = new DiscordPoster();
 
-  const postManager = new PostManager([
-    redditPoster,
-    discordPoster,
-  ]);
+  const postManager = new PostManager([redditPoster, discordPoster]);
 
   const result = await postManager.postSnippet(snippetToPost);
 

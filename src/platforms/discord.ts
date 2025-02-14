@@ -64,7 +64,9 @@ export class DiscordPoster implements PlatformPoster {
           )}\n\`\`\``,
           inline: false,
         })
-        .setImage(`https://registry-api.tscircuit.com/snippets/images/${snippet.name}/schematic.svg`}
+        .setImage(
+          `https://registry-api.tscircuit.com/snippets/images/${snippet.name}/schematic.svg`,
+        )
         .setTimestamp(new Date(snippet.updated_at))
         .setFooter({
           text: "Tscircuit Trending Snippets",
