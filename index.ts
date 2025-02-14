@@ -6,12 +6,8 @@ import {
   loadPostedSnippets,
   savePostedSnippet,
 } from "@/snippets/track-posted-snippets";
-import debug from "debug";
 
 export default async function main() {
-  console.clear();
-  debug("[INDEX] Starting main function.\n");
-
   const snippets = await fetchTrendingSnippets();
   const postedSnippets = loadPostedSnippets();
 
@@ -34,8 +30,6 @@ export default async function main() {
   if (result.successes) {
     savePostedSnippet(snippetToPost.snippet_id);
   }
-
-  console.log("\n[INDEX] Main function completed successfully.");
 }
 
 if (import.meta.main) {

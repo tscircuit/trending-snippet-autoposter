@@ -5,9 +5,9 @@ export class PostManager {
 
   constructor(posters: PlatformPoster[]) {
     this.posters = posters;
-    console.log(
-      "[POST-MANAGER] Initialized with posters:",
-      posters.map((poster) => poster.constructor.name).join(", "),
+    debug(
+      "[POST-MANAGER] Initialized with posters: " +
+        posters.map((poster) => poster.constructor.name).join(", "),
     );
   }
 
