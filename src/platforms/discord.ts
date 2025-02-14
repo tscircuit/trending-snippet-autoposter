@@ -60,10 +60,11 @@ export class DiscordPoster implements PlatformPoster {
           name: "📌 Code Preview",
           value: `\`\`\`typescript\n\n\n${SnippetFormatter.truncatedCode(
             snippet,
-            250,
+            200,
           )}\n\`\`\``,
           inline: false,
         })
+        .setImage(`https://registry-api.tscircuit.com/snippets/images/${snippet.name}/schematic.svg`}
         .setTimestamp(new Date(snippet.updated_at))
         .setFooter({
           text: "Tscircuit Trending Snippets",
