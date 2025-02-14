@@ -1,20 +1,22 @@
 export class SnippetFormattingManager {
-  // Helper: Short description or fallback
   public shortDescription(snippet: Snippet): string {
-    return snippet.description || 'No description available';
+    return snippet.description
+      ? snippet.description.substring(0, 25)
+      : "No description available";
   }
 
-  // Helper: Full code block
+  public fullDescription(snippet: Snippet): string {
+    return snippet.description || "No description available";
+  }
+
   public fullCode(snippet: Snippet): string {
-    return `\`\`\`${snippet.code}\`\`\``;
+    return `${snippet.code}`;
   }
 
-  // Helper: Truncated code block with a customizable length
   public truncatedCode(snippet: Snippet, maxLength: number): string {
-    return `\`\`\`${snippet.code.substring(0, maxLength)}...\`\`\``;
+    return `${snippet.code.substring(0, maxLength)}...`;
   }
 
-  // Format for Twitter (shortened content)
   public formatForTwitter(snippet: Snippet): string {
     return `
       🚀 New Trending Snippet: ${snippet.name}
@@ -24,7 +26,6 @@ export class SnippetFormattingManager {
     `;
   }
 
-  // Format for Reddit (full content)
   public formatForReddit(snippet: Snippet): string {
     return `
       🚀 New Trending Snippet: ${snippet.name}
@@ -34,7 +35,6 @@ export class SnippetFormattingManager {
     `;
   }
 
-  // Format for Discord (medium-length content)
   public formatForDiscord(snippet: Snippet): string {
     return `
       🚀 New Trending Snippet: ${snippet.name}
@@ -45,4 +45,4 @@ export class SnippetFormattingManager {
   }
 }
 
-export const SnippetFormatter = new SnippetFormattingManager()
+export const SnippetFormatter = new SnippetFormattingManager();
