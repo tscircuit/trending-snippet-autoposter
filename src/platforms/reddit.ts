@@ -1,5 +1,6 @@
 import snoowrap from "snoowrap";
 import { SnippetFormatter } from "@/utils/snippet-formatter";
+import debug from "debug";
 
 export class RedditPoster implements PlatformPoster {
   private client: snoowrap | null = null;
@@ -57,7 +58,7 @@ Created By [${snippet.owner_name}](https://github.com/${snippet.owner_name})
         subredditName: "tscircuit",
       });
 
-      console.log(
+      debug(
         `[REDDIT-POSTER] Successfully posted snippet to Reddit: ${snippet.name}`,
       );
       return true;
