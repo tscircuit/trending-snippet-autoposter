@@ -53,7 +53,7 @@ Created By [${snippet.owner_name}](https://github.com/${snippet.owner_name})
 
 `.trim();
 
-      this.client.submitSelfpost({
+      await this.client.submitSelfpost({
         title: `🚀 New Trending Snippet: ${snippet.name}`,
         text: content,
         subredditName: process.env.REDDIT_SUBREDDIT || "tscircuit",
